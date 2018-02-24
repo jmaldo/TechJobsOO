@@ -20,9 +20,10 @@ namespace TechJobs.Controllers
         public IActionResult Index(int id)
         {
             // TODO #1 - get the Job with the given ID and pass it into the view
+            //liklely not working
             Models.Job selectedJob = jobData.Find(id);
 
-            return View();
+            return View(selectedJob);
         }
 
         public IActionResult New()
@@ -43,7 +44,9 @@ namespace TechJobs.Controllers
                 {
                     Name = newJobViewModel.Name,
                     Employer = jobData.Employers.Find(newJobViewModel.EmployerID),
-                    
+                    Location = jobData.Locations.Find(newJobViewModel.LocationID),
+                    CoreCompetency = jobData.CoreCompetencies.Find(newJobViewModel.SkillID),
+                    PositionType = jobData.PositionTypes.Find(newJobViewModel.PositionTypeID)
                 };
 
                 jobData.Jobs.Add(newJob);
